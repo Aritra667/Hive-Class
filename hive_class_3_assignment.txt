@@ -1,4 +1,4 @@
-1. Download vechile sales data -> https://github.com/shashank-mishra219/Hive-Class/blob/main/sales_order_data.csv
+sele1. Download vechile sales data -> https://github.com/shashank-mishra219/Hive-Class/blob/main/sales_order_data.csv
 
 2. Store raw data into hdfs location
 
@@ -14,9 +14,20 @@
 Perform below menioned queries on "sales_order_orc" table :
 
 a. Calculatye total sales per year
+select sum(sales) from sales_order_data_orc group by year_id;
+	
 b. Find a product for which maximum orders were placed
+select productcode,count(ordernumber) as cnt from sales_order_data_orc group by productcode order by cnt  desc limit 1;
+
 c. Calculate the total sales for each quarter
+select qtr_id,sum(sales) from sales_order_data_orc group by qtr_id;
+
 d. In which quarter sales was minimum
+select qtr_id,sum(sales) Total_Sales from sales_order_data_orc group by qtr_id order by Total_Sales limit 1;
+
 e. In which country sales was maximum and in which country sales was minimum
+
 f. Calculate quartelry sales for each city
+select qtr_id,city,sum(sales) from sales_order_data_orc group by qtr_id,city order by qtr_id,city;
+
 h. Find a month for each year in which maximum number of quantities were sold
